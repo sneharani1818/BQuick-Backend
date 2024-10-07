@@ -9,7 +9,7 @@ export const getAllBurger = (req, res) => {
     try {
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = dirname(__filename);
-        const burgerFilePath = path.resolve(__dirname, "../data/burgers.json");
+        const burgerFilePath = path.resolve(__dirname, "../data/burger.json");
         console.log("Resolved burger file path:", burgerFilePath); // Log the resolved path
 
         if (!fs.existsSync(burgerFilePath)) {

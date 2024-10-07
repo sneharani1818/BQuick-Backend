@@ -128,39 +128,3 @@ export const getPizzaById = (req, res) => {
         });
     }
 };
-
-//fetch image of item by it's product_id
-export const pizzaImageController = (req, res) => {
-    try {
-        // const product = await productModel.findById(req.params.pid).select("photo")
-        const __filename = fileURLToPath(import.meta.url);
-        const __dirname = dirname(__filename);
-        const pizzaId = req.params.pizzaid; // get pizza name from URL parameters
-        // console.log(pizzaId)
-        // Resolve the pizza.json file path
-        const pizzaFilePath = path.resolve(__dirname, `../images/pizzaImages/${pizzaId}.jpg`);
-
-        if (!fs.existsSync(pizzaFilePath)) {
-            throw new Error(`File not found at path: ${pizzaFilePath}`);
-        }
-
-        // // Read the pizza JSON file
-        // const pizzaData = fs.readFileSync(pizzaFilePath, "utf-8");
-        // const pizzaArray = JSON.parse(pizzaData);
-        // // console.log(pizzaArray)
-        // // Find pizza by name (case-insensitive comparison)
-        // const pizza = pizzaArray.find(p => p.id.toLowerCase() == pizzaId.toLowerCase());
-
-        if (pizza.photo.data) {
-            res.set('Content-type', pizza.photo.contentType)
-            return res.status(200).send(product.photo.data)
-        }
-    } catch (err) {
-        console.log(err)
-        res.status(500).send({
-            success: false,
-            message: "Could not get photo",
-            err,
-        })
-    }
-}
